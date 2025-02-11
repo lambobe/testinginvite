@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernie's Invitation</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="gif-container">
+            <img src="https://media1.tenor.com/m/5FR_vwczMGYAAAAC/hi-there-my-love-love.gif" alt="">
+        </div>
+    </div>
+    <div class="pin-pad">
+        
+        <div class="display" id="display">Enter PIN Langga</div>
+        <div class="keypad">
+            <button onclick="addNumber('1')">1</button>
+            <button onclick="addNumber('2')">2</button>
+            <button onclick="addNumber('3')">3</button>
+            <button onclick="addNumber('4')">4</button>
+            <button onclick="addNumber('5')">5</button>
+            <button onclick="addNumber('6')">6</button>
+            <button onclick="addNumber('7')">7</button>
+            <button onclick="addNumber('8')">8</button>
+            <button onclick="addNumber('9')">9</button>
+            <button class="action-btn" onclick="clearDisplay()">Clear</button>
+            <button onclick="addNumber('0')">0</button>
+            <button class="action-btn" onclick="checkPin()">Enter</button>
+        </div>
+    </div>
+
+<div class="error-modal" id="errorModal">
+    <div class="modal-content">
+        <img src="https://media.tenor.com/TDoaU1-fcDgAAAAM/pout-girl.gif" alt="Sad Face">
+        <h2>Incorrect ang PIN langga</h2>
+        <p>Sayop langga. Lahi nga pin. makahinumdom paka? :( </p>
+        <button class="modal-button" onclick="closeErrorModal()">Try Again</button>
+    </div>
+</div>
+
+<div class="success-modal" id="successModal">
+    <div class="modal-content">
+        <img src="https://media.tenor.com/49uF8YRnVCUAAAAj/hello-hello-there.gif" alt="Success Hearts">
+        <h2>AYAY KA!</h2>
+        <p>Yehey! Sakto ang PIN langga! Happy Monthsary daan ❤️</p>
+        <button class="modal-button" onclick="redirectToSuccess()">Please Continue palangga</button>
+    </div>
+</div>
+
+<script>
+    let currentPin = '';
+    const correctPin = '041921';
+    const display = document.getElementById('display');
+    const errorModal = document.getElementById('errorModal');
+    const successModal = document.getElementById('successModal');
+
+    function addNumber(num){
+        if(currentPin.length < 6) {
+            currentPin += num;
+            updateDisplay();
+        }
+    }
+
+    function updateDisplay(){
+        display.textContent = currentPin;
+    }
+
+    function clearDisplay(){
+        currentPin = '';
+        display.textContent = 'Enter PIN Langga';
+    }
+
+    function checkPin(){
+        if(currentPin === correctPin){
+            showSuccessModal();
+        } else {
+            showErrorModal();
+        }
+    }
+
+    function showErrorModal() {
+        errorModal.style.display = 'flex';
+    }
+
+    function closeErrorModal() {
+        errorModal.style.display = 'none';
+        clearDisplay();
+    }
+
+    function showSuccessModal() {
+        successModal.style.display = 'flex';
+    }
+
+    function redirectToSuccess() {
+        window.location.href = 'invite.html';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == errorModal) {
+            closeErrorModal();
+        }
+        if (event.target == successModal) {
+            redirectToSuccess();
+        }
+    }
+    </script>
+    
+</body>
+</html>
